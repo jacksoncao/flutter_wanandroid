@@ -33,7 +33,7 @@ class _NavigationPageState extends State<NavigationPage> with AutomaticKeepAlive
         asyncLoad: () => NavigationPageDao.getNavigationCategroyList(),
         loadedWidget: (data){
           return Container(
-          child: Row(
+            child: Row(
               children: <Widget>[
                 //左边视图
                 NavigationLeftListView(width: ScreenUtils.width(140),),

@@ -1,5 +1,5 @@
 
-//应用三方开源库配置说明
+//引用三方开源库
 List datas = [
   {
     "name":"dio",
@@ -52,6 +52,10 @@ List datas = [
   {
     "name":"date_format",
     "url":"https://pub.dev/packages/date_format"
+  },
+  {
+    "name":"cached_network_image",
+    "url":"https://pub.dev/packages/cached_network_image"
   },
   {
     "name":"鸿洋  玩安卓全站API接口",

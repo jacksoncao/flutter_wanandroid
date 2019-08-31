@@ -53,10 +53,16 @@ class _RefreshWidgetState<T> extends State<RefreshWidget<T>>{
          footer: widget.footer == null ? BallPulseFooter() : widget.footer(),
          enableControlFinishLoad: true,
          controller: _controller,
-         onLoad: () async{
-           BaseResultModel<BasePageModel<T>> resultData = await widget.onLoadMore(_nextPageIndex);
-           LoadResult result = processLoadResult(resultData);
-           _controller.finishLoad(success: result.success,noMore: result.noMore);
+         onLoad: () {
+           widget.onLoadMore(_nextPageIndex).then((resultData){
+              LoadResult result = processLoadResult(resultData);
+              _controller.finishLoad(success: result.success,noMore: result.noMore);
+            })
+            .catchError((e,StackTrace trace){
+              print("请求出错了============");
+              showToast("网络不稳定啊，请检查网络后重试!!");
+              _controller.finishLoad(success: false,noMore: true);
+            });
          },
        ),
     );
@@ -72,7 +78,7 @@ class _RefreshWidgetState<T> extends State<RefreshWidget<T>>{
       showToast("没有更多数据啦");
       result = LoadResult(success: true,noMore: true);
     }else{
-      showToast("${resultModel.errorMsg}");
+      showToast("${resultModel?.errorMsg}");
       result = LoadResult(success: false,noMore: false);
     }
     return result;

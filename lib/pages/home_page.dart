@@ -100,8 +100,10 @@ class _HomePageState extends State<HomePage>
     if(!inited){
       inited = true;
       ScreenUtils.init(context);
+      //进行自动登录操作，查找本地是否有用户名和密码，如果有则进行自动登录。此处应该进行加密存储的
       UserDao.loadStorageLoginUser(Provider.of<UserProvider>(context));
     }
+    //提前请求搜索热词接口，这样进入搜索也不用再请求了
     HotkeyUtils.requestHotkeyList(Provider.of<SearchProvider>(context));
     return Scaffold(
       backgroundColor: Colors.black12,
@@ -117,6 +119,8 @@ class _HomePageState extends State<HomePage>
     HomePageDao.getHomeBannerList().then((model) {
       if(model.resultCode == BaseResultModel.STATE_OK){
         Provider.of<HomeProvider>(context).addHomeBannerList(model.data);
+      }else{
+        print("没有顶部Banner数据");
       }
     });
   }
@@ -127,7 +131,8 @@ class _HomePageState extends State<HomePage>
       if(model.resultCode == BaseResultModel.STATE_OK){
         Provider.of<HomeProvider>(context).insertTopArticle(model.data);
       }else{
-        showToast("没有置顶文章");
+        // showToast("没有置顶文章");
+        print("没有置顶文章");
       }
     });
   }

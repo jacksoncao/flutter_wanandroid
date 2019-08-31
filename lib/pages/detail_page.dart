@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/platform_interface.dart';
 import '../utils/widget_utils.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../provider/user_provider.dart';
@@ -34,7 +33,7 @@ class _DetailPageState extends State<DetailPage> {
   void initState() { 
     super.initState();
     type = widget.arguments["type"];
-    if(type == PageType.WAP){
+    if(type == PageType.INNER_WAP || type == PageType.OUTTER_WAP){
       wapArgs = widget.arguments["data"] as Map;
     }else if(type == PageType.BANNER){
       bannerItem = widget.arguments["data"] as HomeBannerItemModel;
@@ -80,7 +79,7 @@ class _DetailPageState extends State<DetailPage> {
   List<Widget> _actionWidgets(){
     List<Widget> list = [];
     list.add(_reloadWidget());
-    if(type != PageType.BANNER){
+    if(type != PageType.BANNER && type != PageType.OUTTER_WAP){
       list.add(_collectWidget());
     }
     return list;
@@ -104,7 +103,7 @@ class _DetailPageState extends State<DetailPage> {
             Provider.of<UserProvider>(context).removeCollectionId(article.originId);
           }
         });
-      }else if(type == PageType.WAP){
+      }else if(type == PageType.INNER_WAP){
         CollectionDao.uncollectWap(wapArgs["id"]).then((result){
           if(result.resultCode == BaseResultModel.STATE_OK){
             showToast("取消收藏成功");
@@ -120,7 +119,7 @@ class _DetailPageState extends State<DetailPage> {
             Provider.of<UserProvider>(context).addCollectionId(type == PageType.ARTICLE ? article.id : article.originId);
           }
         });
-      }else if(type == PageType.WAP){
+      }else if(type == PageType.INNER_WAP){
         CollectionDao.collectWap(wapArgs["name"],wapArgs["link"]).then((result){
           if(result.resultCode == BaseResultModel.STATE_OK){
             showToast("取消收藏成功");
@@ -136,7 +135,7 @@ class _DetailPageState extends State<DetailPage> {
     if(user == null || user.collectIds == null || user.collectIds.length == 0){
       return false;
     }
-    if(type == PageType.WAP){
+    if(type == PageType.INNER_WAP){
       return user.collectIds.contains(wapArgs["id"]);
     }else if(type == PageType.ARTICLE){
       return user.collectIds.contains(article.id);
@@ -148,12 +147,14 @@ class _DetailPageState extends State<DetailPage> {
   //网页的url地址
   String _getUrl(){
     String url = "";
-    if(type == PageType.WAP){  // id  name  link
+    if(type == PageType.INNER_WAP){  // id  name  link
       url = wapArgs["link"];
     }else if(type == PageType.BANNER){
       url = bannerItem.url;
     }else if(type == PageType.ARTICLE || type == PageType.ARTICLE_COLLECT){
       url = article.link;
+    }else if(type == PageType.OUTTER_WAP){
+      url = wapArgs["url"];
     }
     return url;
   }
@@ -223,7 +224,9 @@ enum PageType{
 
   BANNER, //首页banner运营页
 
-  WAP,  //普通网页
+  INNER_WAP,  //站内接口返回的普通网页,有id  name  link
+
+  OUTTER_WAP, //直接跳转到站外网页,只有url
 
   ARTICLE,  //列表文章
 

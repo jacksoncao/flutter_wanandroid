@@ -21,7 +21,7 @@ class NavigationRightFlowView extends StatelessWidget {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
           onPressed: (){
             Navigator.of(context).pushNamed("/detail_page",
-                arguments: {"data":{"id":model.id,"name":model.title,"link":model.link},"type":PageType.WAP});
+                arguments: {"data":{"id":model.id,"name":model.title,"link":model.link},"type":PageType.INNER_WAP});
           },
         ),
       );

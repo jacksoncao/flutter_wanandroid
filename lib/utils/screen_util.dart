@@ -21,12 +21,12 @@ class ScreenUtils{
   static double get screenHeightDp => ScreenUtil.screenHeightDp;
 
   //将设计稿中的元素宽度转化成屏幕中的宽
-  static width(double width) => ScreenUtil.instance.setWidth(width);
+  static double width(double width) => ScreenUtil.instance.setWidth(width);
 
   //将设计稿中的元素的高度转换成屏幕中的高
-  static height(double height) => ScreenUtil.instance.setHeight(height);
+  static double height(double height) => ScreenUtil.instance.setHeight(height);
 
   //状态栏的高度  逻辑高度
-  static statusBarHeight() =>ScreenUtil.statusBarHeight;
+  static double get statusBarHeight =>ScreenUtil.statusBarHeight;
   
 }

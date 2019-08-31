@@ -90,7 +90,7 @@ class _ProjectPageState extends State<ProjectPage>
             );
           },
           receiveData: (data){
-            _controller = TabController(initialIndex: 0,length: data.length,vsync: this);
+            _controller = TabController(initialIndex: 0,length: data.length,vsync: this); //根据tab数据重新创建TabController
             provider.addProgramCategoryList(data);
           },
         );

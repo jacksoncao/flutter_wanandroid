@@ -6,7 +6,7 @@ import 'package:flutter_wananzhuo/utils/screen_util.dart';
 /*
  * 使用另一种方式实现tab页面的切换
  * 
- * 同时解决：页面状态保存 + 切换执行build + 懒加载
+ * 同时解决：页面状态保存 + 切换只有初次会执行build方法 + 懒加载
  */  
 class TodoPage extends StatefulWidget {
   TodoPage({Key key}) : super(key: key);

@@ -55,7 +55,7 @@ Widget homeAppBar(BuildContext context,String title){
     height: ScreenUtils.width(110),
     padding: EdgeInsets.fromLTRB(
         ScreenUtils.width(30),
-        ScreenUtils.width(13)+ScreenUtils.statusBarHeight(),
+        ScreenUtils.width(13)+ScreenUtils.statusBarHeight,
         ScreenUtils.width(30),
         ScreenUtils.width(13)),
     onTap: () => Navigator.of(context).pushNamed("/search_page"),

@@ -37,7 +37,7 @@ class WapListPage extends StatelessWidget {
           trailing: Icon(Icons.arrow_right,size:ScreenUtils.width(30),color:Colors.black12),
           onTap: (){
             Navigator.of(context).pushNamed("/detail_page",
-                arguments: {"data":{"id":wapModel.id,"name":wapModel.name,"link":wapModel.link},"type":PageType.WAP});
+                arguments: {"data":{"id":wapModel.id,"name":wapModel.name,"link":wapModel.link},"type":PageType.INNER_WAP});
           },
         ),
       )

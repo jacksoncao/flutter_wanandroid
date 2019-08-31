@@ -5,49 +5,56 @@ import '../utils/screen_util.dart';
 //搜索AppBar
 class SearchAppBarWidget extends StatefulWidget {
 
-  final Function(String value) onTap;  //点击搜索按钮
+  final String searchText; //搜索词
   final double height; //AppBar的高度
-  final EdgeInsets padding; //AppBar的内边距
-  final double textFieldPadding; //输入框的内部边距
-  final double fontSize;
-  final Color titleColor;
-  final Color backgroundColor;
-  final void Function(String value,int length) onChanged; //输入框内容变化时调用
-  final void Function(SearchController controller) onSearchBarCreated;
+  final double textFieldPadding; //输入框的内部边距，内容文字距离输入框的四周的边距
+  final double fontSize; //输入框的内容文字的大小
+  final Color textColor; //输入框内容文字的颜色
+  final Color backgroundColor; //AppBar的背景色
+  final Function(String value) onTap;  //点击搜索按钮
+  final void Function(String value) onValueChanged; //输入框内容变化时调用
+  final void Function(SearchTextChangeNotifier notifier) onReceiveNotifier; 
 
-  SearchAppBarWidget({this.onTap,
+  SearchAppBarWidget({this.searchText,
                       this.height,
-                      this.padding,
                       this.textFieldPadding=10,
                       this.fontSize=15,
-                      this.titleColor,
+                      this.textColor,
                       this.backgroundColor=Colors.pinkAccent,
-                      this.onChanged,
-                      this.onSearchBarCreated});
+                      this.onTap,
+                      this.onValueChanged,
+                      this.onReceiveNotifier});
 
   _SearchAppBarWidgetState createState() => _SearchAppBarWidgetState();
 }
 
-class _SearchAppBarWidgetState extends State<SearchAppBarWidget> with SearchController{
+class _SearchAppBarWidgetState extends State<SearchAppBarWidget> with SearchTextChangeNotifier{
 
   TextEditingController _controller = TextEditingController();
   bool disposed = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.text = widget.searchText;
+    if(widget.onReceiveNotifier != null){
+      widget.onReceiveNotifier(this);
+    }
+  }
+
+  @override
+  void changeText(String searchText){
+    setState(() {
+       _controller.text = searchText;
+       _controller.selection = TextSelection.collapsed(offset:searchText.length);
+    });
+  }
 
   @override
   void dispose(){
     super.dispose();
     _controller.dispose();
     disposed = true;
-  }
-
-  @override
-  void setSearchValue(String value){
-    if(_controller != null && !disposed){
-      setState(() {
-        _controller.text = value;
-        _controller.selection = TextSelection.collapsed(offset:value.length);
-      });
-    }
   }
 
   //搜索按钮
@@ -98,19 +105,23 @@ class _SearchAppBarWidgetState extends State<SearchAppBarWidget> with SearchCont
           borderRadius: BorderRadius.circular(5)
         ),
         alignment: Alignment.center,
-        padding: EdgeInsets.all(ScreenUtils.width(widget.textFieldPadding)),
         child: TextField(
-          decoration: null, //去掉TextField的
+          decoration: InputDecoration(
+            hintText: "输入搜索词搜搜试试吧！",
+            hintStyle: TextStyle(color: Colors.black12),
+            border: InputBorder.none,  //输入框不需要边框
+            contentPadding: EdgeInsets.all(ScreenUtils.width(widget.textFieldPadding)),
+          ), 
           controller: _controller,
           maxLines: 1,
           onChanged: (value){
-            if(widget.onChanged != null){
-              widget.onChanged(value,value.length);
+            if(widget.onValueChanged != null){
+              widget.onValueChanged(value);
             }
           },
           style: TextStyle(
             fontSize: widget.fontSize,
-            color: widget.titleColor
+            color: widget.textColor
           ),
         ),
       ),
@@ -119,27 +130,23 @@ class _SearchAppBarWidgetState extends State<SearchAppBarWidget> with SearchCont
 
   @override
   Widget build(BuildContext context) {
-    Widget _widget =  Container(
+    return Container(
       height: widget.height,
-      padding: widget.padding,
+      padding: EdgeInsets.only(top:ScreenUtils.statusBarHeight), //顶部偏移状态栏高度
       color: widget.backgroundColor,
       child: Row(
         children: <Widget>[
-          _backWidget(),
-          _inputWidget(),
-          _searchButton()
+          _backWidget(), //返回按钮组件
+          _inputWidget(),  //输入框组件
+          _searchButton()  //搜索按钮组件
         ],
       ),
     );
-    if(widget.onSearchBarCreated != null){
-      widget.onSearchBarCreated(this);
-    }
-    return _widget;
   }
 }
 
-abstract class SearchController{
+abstract class SearchTextChangeNotifier{
 
-  void setSearchValue(String value);
+  void changeText(String searchText);
 
 }

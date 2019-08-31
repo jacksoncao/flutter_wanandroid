@@ -8,6 +8,7 @@ import '../dao/collection_dao.dart';
 import '../model/base_result_model.dart';
 import '../pages/detail_page.dart';
 import '../utils/widget_utils.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 //自定义文章列表item组件，目前可以在  首页列表/项目分类下的列表 复用
 class ArticleItemWidget extends StatelessWidget {
@@ -33,6 +34,7 @@ class ArticleItemWidget extends StatelessWidget {
   //文章作者以及发布时间组件
   Widget _articleAuthorAndDate(CommonModel item) {
     return Container(
+      margin: EdgeInsets.only(top: ScreenUtils.width(3)),
       child: Row(
         children: <Widget>[
           _simpleTextWidget("作者：${item.author}"),
@@ -181,6 +183,45 @@ class ArticleItemWidget extends StatelessWidget {
     );
   }
 
+  //右侧内容视图
+  Widget _rightWidget(){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        _articleTitleWidget(),
+        _articleDescriptionWidget(),
+        _articleAuthorAndDate(data),
+        _articleBottomTagAndCategory(data)
+      ],
+    );
+  }
+
+  //真个item视图组件，包含：左侧图片和右侧内容视图
+  Widget _itemContentWidget(){
+    return Row(
+      mainAxisSize: MainAxisSize.max,
+      children: <Widget>[
+        Container(
+          margin: EdgeInsets.only(right: ScreenUtils.width(5)),
+          width: ScreenUtils.width(80),
+          height: ScreenUtils.width(120),
+          alignment: Alignment.center,
+          child: CachedNetworkImage(
+            imageUrl: data.envelopePic,
+            placeholder: (context,url) => CircularProgressIndicator(backgroundColor: Colors.grey,),
+            errorWidget: (context,url,error) => Icon(Icons.error_outline,size: ScreenUtils.width(35),color: Colors.pinkAccent,),
+          ),
+        ),
+        Expanded(
+          flex: 1,
+          child: _rightWidget(),
+        )
+      ],
+    );
+  }
+
+  bool get _hasImage => data.envelopePic != null && data.envelopePic.length > 0;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -197,16 +238,7 @@ class ArticleItemWidget extends StatelessWidget {
           child: Container(
             //列表item的内容显示区域距离列表item的边框有12的距离
             padding: EdgeInsets.all(ScreenUtils.width(12)),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                _articleTitleWidget(),
-                _articleDescriptionWidget(),
-                _articleAuthorAndDate(data),
-                SizedBox(height: ScreenUtils.width(3)),
-                _articleBottomTagAndCategory(data)
-              ],
-            ),
+            child: _hasImage ? _itemContentWidget():_rightWidget(),
           ),
           onTap: () {
             Navigator.of(context).pushNamed("/detail_page", 

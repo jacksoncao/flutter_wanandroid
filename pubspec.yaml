@@ -51,6 +51,8 @@ dependencies:
   flutter_cupertino_date_picker: ^1.0.12
   # 日期时间格式化
   date_format: ^1.0.6
+  # 网络图片缓存库
+  cached_network_image: ^1.1.1
 
 dev_dependencies:
   flutter_test:

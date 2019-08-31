@@ -23,26 +23,25 @@ class _SearchPageState extends State<SearchPage> {
 
   StateController _controller = StateController();
   PageType _pageType = PageType.HOTKEY;  
-  String _key;
-
+  String _key; //搜索词
   Random mRandom = Random();
-  SearchController searchController;
+  SearchTextChangeNotifier  changeNotifier;
   
   //自定义搜索AppBar
   Widget _searchAppBar(SearchProvider provider){
     return SearchAppBarWidget(
       height: ScreenUtils.width(110),
-      padding: EdgeInsets.only(top: ScreenUtils.statusBarHeight()),
-      titleColor: Colors.grey,
+      textColor: Colors.grey,
       onTap: (value){
         _search(value,provider);
       },
-      onSearchBarCreated: (controller){
-        searchController = controller;
+      onReceiveNotifier: (notifier){
+        changeNotifier = notifier;
       },
-      onChanged: (value,length){  //输入框的内容为空时，显示搜索热词页面
-        if(length == 0 && _pageType != PageType.HOTKEY){
+      onValueChanged: (value){  //输入框的内容为空时，显示搜索热词页面
+        if((value == null || value.length == 0) && _pageType != PageType.HOTKEY){
           setState(() {
+            _key = value;
             _pageType = PageType.HOTKEY; 
           });
         }
@@ -98,7 +97,7 @@ class _SearchPageState extends State<SearchPage> {
                 "搜索热词：",
                 style: TextStyle(
                   color: Colors.blue,
-                  fontSize: 18
+                  fontSize: 16
                 ),
               ),
             ),
@@ -123,7 +122,7 @@ class _SearchPageState extends State<SearchPage> {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
           onPressed: (){
             _search(model.name,provider);
-            searchController?.setSearchValue(model.name);
+            changeNotifier?.changeText(_key);
           },
         ),
       );
@@ -156,6 +155,7 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 
+  //搜索操作，改变当前页面显示为搜索loading，清空搜索结果集合，设置搜索框中的搜索词
   _search(String key,SearchProvider provider){
     setState(() {
       _pageType = PageType.SEARCH;  //显示DynamicLoadingWidget搜索组件

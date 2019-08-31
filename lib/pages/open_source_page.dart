@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_wananzhuo/pages/detail_page.dart';
 import 'package:flutter_wananzhuo/utils/widget_utils.dart';
 import '../data/data.dart';
 import '../utils/screen_util.dart';
@@ -22,6 +23,10 @@ class OpenSourceListPage extends StatelessWidget {
                 color: Colors.white,
               ),
               child: ListTile(
+                onTap: (){
+                  Navigator.of(context).pushNamed("/detail_page",
+                      arguments: {"type":PageType.OUTTER_WAP,"data":{"url":datas[index]["url"]}});
+                },
                 leading: Text(
                   "$index",
                   style: TextStyle(
