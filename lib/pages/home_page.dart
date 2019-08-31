@@ -58,7 +58,11 @@ class _HomePageState extends State<HomePage>
     return Consumer<HomeProvider>(
       builder: (context,provider,child){
         return DynamicLoadingWidget<ArticlePageModel>(
-          asyncLoad: () => HomePageDao.getHomeArticleList(0),
+          asyncLoad: () {
+            _requestHomeBanner();  //放在列表请求的方法中，失败后在列表重试时，也重新改请求
+            _requestTopArticlesList();
+            return HomePageDao.getHomeArticleList(0);
+          },
           receiveData: (data) => Provider.of<HomeProvider>(context).addHomePageArticle(data.datas),
           loadedWidget: (datas){
             return RefreshWidget<CommonModel>(
@@ -84,13 +88,6 @@ class _HomePageState extends State<HomePage>
   //保存页面的状态
   @override
   bool get wantKeepAlive => true;
-
-  @override
-  void initState() {
-    super.initState();
-    _requestHomeBanner();
-    _requestTopArticlesList();
-  }
 
   bool inited = false;
 
