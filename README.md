@@ -1,5 +1,18 @@
 ## Flutter玩安卓客户端，几乎实现了所有的公开API接口
 
+#####实现功能模块：
+>+1. 首页<br/>
+>+2. 项目<br/>
+>+3. 知识体系<br/>
+>+4. 导航<br/>
+>+5. 公众号<br/>
+>+6. 收藏<br/>
+>+7. 常用网站<br/>
+>+8. 我的事项<br/>
+>+9. 搜索<br/>
+
+>+ App截图
+
 <img src="https://github.com/jacksoncao/flutter_wanandroid/blob/master/screenshot/Screenshot_2019-08-31-16-45-52-614_com.jackson.flutter_wananzhuo.png" width="180" /><img src="https://github.com/jacksoncao/flutter_wanandroid/blob/master/screenshot/Screenshot_2019-08-31-16-45-29-929_com.jackson.flutter_wananzhuo.png" width="180" /><img src="https://github.com/jacksoncao/flutter_wanandroid/blob/master/screenshot/Screenshot_2019-08-31-16-45-21-213_com.jackson.flutter_wananzhuo.png" width="180" /></br>
 <img src="https://github.com/jacksoncao/flutter_wanandroid/blob/master/screenshot/Screenshot_2019-08-31-16-45-11-315_com.jackson.flutter_wananzhuo.png" width="180" /><img src="https://github.com/jacksoncao/flutter_wanandroid/blob/master/screenshot/Screenshot_2019-08-31-16-46-25-587_com.jackson.flutter_wananzhuo.png" width="180" /><img src="https://github.com/jacksoncao/flutter_wanandroid/blob/master/screenshot/Screenshot_2019-08-31-16-46-39-367_com.jackson.flutter_wananzhuo.png" width="180" />
 
