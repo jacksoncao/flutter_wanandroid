@@ -1,16 +1,33 @@
-# flutter_wananzhuo
+## Flutter玩安卓客户端，几乎实现了所有的公开API接口
 
-A new Flutter project.
+##### 1.实现功能模块：
+> 1. 首页<br/>
+> 2. 项目<br/>
+> 3. 知识体系<br/>
+> 4. 导航<br/>
+> 5. 公众号<br/>
+> 6. 收藏<br/>
+> 7. 常用网站<br/>
+> 8. 我的事项<br/>
+> 9. 搜索<br/>
 
-## Getting Started
+##### 2.App截图
 
-This project is a starting point for a Flutter application.
+<img src="https://github.com/jacksoncao/flutter_wanandroid/blob/master/screenshot/Screenshot_2019-08-31-16-45-52-614_com.jackson.flutter_wananzhuo.png" width="180" /><img src="https://github.com/jacksoncao/flutter_wanandroid/blob/master/screenshot/Screenshot_2019-08-31-16-45-29-929_com.jackson.flutter_wananzhuo.png" width="180" /><img src="https://github.com/jacksoncao/flutter_wanandroid/blob/master/screenshot/Screenshot_2019-08-31-16-45-21-213_com.jackson.flutter_wananzhuo.png" width="180" /></br>
+<img src="https://github.com/jacksoncao/flutter_wanandroid/blob/master/screenshot/Screenshot_2019-08-31-16-45-11-315_com.jackson.flutter_wananzhuo.png" width="180" /><img src="https://github.com/jacksoncao/flutter_wanandroid/blob/master/screenshot/Screenshot_2019-08-31-16-46-25-587_com.jackson.flutter_wananzhuo.png" width="180" /><img src="https://github.com/jacksoncao/flutter_wanandroid/blob/master/screenshot/Screenshot_2019-08-31-16-46-39-367_com.jackson.flutter_wananzhuo.png" width="180" />
 
-A few resources to get you started if this is your first Flutter project:
+##### 3 [感谢鸿洋大大玩安卓公开API](https://www.wanandroid.com/)<br/>
+##### 4 [感谢阿里巴巴iconfont](https://www.iconfont.cn/)<br/>
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+##### 5 项目中使用到以下开源库，也一并对作者作出感谢<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[网络请求库 dio](https://pub.dev/packages/dio)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[轮播图组件 flutter_swiper](https://pub.dev/packages/flutter_swiper)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[屏幕适配 flutter_screenutil](https://pub.dev/packages/flutter_swiper)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[下拉刷新组件 flutter_easyrefresh](https://pub.dev/packages/flutter_swiper)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[全局状态管理 provider](https://pub.dev/packages/flutter_swiper)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[svg组件库 flutter_svg](https://pub.dev/packages/flutter_swiper)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[IOS风格底部日期选择组件 flutter_cupertino_date_picker](https://pub.dev/packages/flutter_swiper)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[网络图片缓存库 cached_network_image](https://pub.dev/packages/flutter_swiper)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[shared_preferences](https://pub.dev/packages/flutter_swiper)<br/>
+    
+##### 6 您可以随意下载修改代码，也可以作为玩安卓网站客户端使用，如果觉得还不错欢迎star，谢谢！！！

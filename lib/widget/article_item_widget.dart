@@ -164,12 +164,6 @@ class ArticleItemWidget extends StatelessWidget {
 
   //文章标题组件
   Widget _articleTitleWidget() {
-    /**
-     * 接口返回的标题中，含有中含有html标签，为了解析html标签及自定义显示样式，做了一下取舍：
-     *    1.为了解析html元素，没有直接使用Text组件
-     *    2.因为html元素内容不固定，使用RichText不能灵活的自定义显示样式
-     *    3.
-     */
     return Container(
       child: RichText(
         text: TextSpan(
