@@ -20,14 +20,14 @@
 ##### 4 [感谢阿里巴巴iconfont](https://www.iconfont.cn/)<br/>
 
 ##### 5 项目中使用到以下开源库，也一并对作者作出感谢<br/>
-    [网络请求库 dio](https://pub.dev/packages/dio)<br/>
-    [轮播图组件 flutter_swiper](https://pub.dev/packages/flutter_swiper)<br/>
-    [屏幕适配 flutter_screenutil](https://pub.dev/packages/flutter_swiper)<br/>
-    [下拉刷新组件 flutter_easyrefresh](https://pub.dev/packages/flutter_swiper)<br/>
-    [全局状态管理 provider](https://pub.dev/packages/flutter_swiper)<br/>
-    [svg组件库 flutter_svg](https://pub.dev/packages/flutter_swiper)<br/>
-    [IOS风格底部日期选择组件 flutter_cupertino_date_picker](https://pub.dev/packages/flutter_swiper)<br/>
-    [网络图片缓存库 cached_network_image](https://pub.dev/packages/flutter_swiper)<br/>
-    [shared_preferences](https://pub.dev/packages/flutter_swiper)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[网络请求库 dio](https://pub.dev/packages/dio)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[轮播图组件 flutter_swiper](https://pub.dev/packages/flutter_swiper)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[屏幕适配 flutter_screenutil](https://pub.dev/packages/flutter_swiper)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[下拉刷新组件 flutter_easyrefresh](https://pub.dev/packages/flutter_swiper)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[全局状态管理 provider](https://pub.dev/packages/flutter_swiper)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[svg组件库 flutter_svg](https://pub.dev/packages/flutter_swiper)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[IOS风格底部日期选择组件 flutter_cupertino_date_picker](https://pub.dev/packages/flutter_swiper)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[网络图片缓存库 cached_network_image](https://pub.dev/packages/flutter_swiper)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[shared_preferences](https://pub.dev/packages/flutter_swiper)<br/>
     
->+ 您可以随意下载修改代码，也可以作为玩安卓网站客户端使用，如果觉得还不错欢迎star，谢谢！！！
+##### 6 您可以随意下载修改代码，也可以作为玩安卓网站客户端使用，如果觉得还不错欢迎star，谢谢！！！
