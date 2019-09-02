@@ -53,6 +53,8 @@ dependencies:
   date_format: ^1.0.6
   # 网络图片缓存库
   cached_network_image: ^1.1.1
+  # html插件解析html内容中的标签元素
+  flutter_html: ^0.10.4
 
 dev_dependencies:
   flutter_test:

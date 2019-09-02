@@ -121,8 +121,8 @@ class _SearchPageState extends State<SearchPage> {
           color: Color.fromARGB(255, mRandom.nextInt(255), mRandom.nextInt(255), mRandom.nextInt(255)),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
           onPressed: (){
-            _search(model.name,provider);
-            changeNotifier?.changeText(_key);
+            _search(model.name,provider);  //切换页面，执行搜索操作
+            changeNotifier?.changeText(_key); // 点击搜索热词，需要同时改变搜索框中的显示内容
           },
         ),
       );
@@ -131,7 +131,7 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     SearchProvider provider = Provider.of<SearchProvider>(context);
-    HotkeyUtils.requestHotkeyList(Provider.of<SearchProvider>(context));
+    HotkeyUtils.requestHotkeyList(provider);
     return Scaffold(
       body: Container(
         width: ScreenUtils.screenWidth,

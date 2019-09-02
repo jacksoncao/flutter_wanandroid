@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/html_parser.dart';
 import '../model/common/common_model.dart';
 import '../utils/screen_util.dart';
 import '../provider/user_provider.dart';
@@ -9,6 +10,8 @@ import '../model/base_result_model.dart';
 import '../pages/detail_page.dart';
 import '../utils/widget_utils.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:html/dom.dart' as dom;
+import 'package:html/parser.dart' as parser; //命名别名，解决类名重名问题
 
 //自定义文章列表item组件，目前可以在  首页列表/项目分类下的列表 复用
 class ArticleItemWidget extends StatelessWidget {
@@ -161,14 +164,40 @@ class ArticleItemWidget extends StatelessWidget {
 
   //文章标题组件
   Widget _articleTitleWidget() {
+    /**
+     * 接口返回的标题中，含有中含有html标签，为了解析html标签及自定义显示样式，做了一下取舍：
+     *    1.为了解析html元素，没有直接使用Text组件
+     *    2.因为html元素内容不固定，使用RichText不能灵活的自定义显示样式
+     *    3.
+     */
     return Container(
-      child: Text(
-        "${data.title}",
+      child: RichText(
+        text: TextSpan(
+          children: _parseArticleTitleSpans(data.title)
+        ),
         overflow: TextOverflow.ellipsis,
-        maxLines: 1,
-        style: TextStyle(color: Colors.black, fontSize: 17),
+        maxLines: 1, //设置为单行
       ),
     );
+  }
+
+  //使用html解析器解析标题的内容
+  List<TextSpan> _parseArticleTitleSpans(String title){
+     dom.Document document = parser.parse(data.title);
+     dom.Node node = document.body;
+     return node.nodes.map((i) => _parseNode(i)).toList();
+  }
+
+  //解析html中的node元素，返回TextSpan
+  TextSpan _parseNode(dom.Node node){
+    if(node is dom.Element){
+      switch(node.localName){
+          case "em":
+            return TextSpan(text:node.text,style: TextStyle(color: Colors.pinkAccent,fontSize: 17),);
+        }
+     }
+    String finalText = node.text.replaceAll("\n", "").trim();
+    return TextSpan(text:finalText,style: TextStyle(color: Colors.black,fontSize: 17),);
   }
 
   //文章内容简介组件
