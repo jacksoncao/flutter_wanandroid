@@ -42,7 +42,7 @@ dependencies:
   # WebView插件
   webview_flutter: ^0.3.13
   # svg插件  主要为了代码实践，所以有些图使用png，有些图使用svg
-  flutter_svg: ^0.12.4+2
+  flutter_svg: ^0.14.1
   # 使用小存储文件存储数据
   shared_preferences: ^0.5.3+4
   # 访问手机文件系统

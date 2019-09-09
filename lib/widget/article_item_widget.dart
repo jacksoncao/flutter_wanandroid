@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_html/html_parser.dart';
 import '../model/common/common_model.dart';
 import '../utils/screen_util.dart';
 import '../provider/user_provider.dart';
